@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 import sqlite3
-from typing import List
+from typing import List, Optional
 import math
 
 places_app = APIRouter()
@@ -42,14 +42,27 @@ class PlaceResponse(BaseModel):
     visit_duration: float
 
 # Creates Itinerary for city
-@places_app.get("/cities/places/")
-async def get_nearest_cities(lat: float, lon: float, city_id : str):
+@places_app.post("/cities/places/")
+async def get_itinerary(lat: float, lon: float, city_id : str, tags: Optional[List[str]] = None):
     conn = sqlite3.connect(DB_FILE)
     conn.execute("PRAGMA foreign_keys = ON")
     cursor = conn.cursor()
 
     try:
-        cursor.execute("SELECT name, latitude, longitude, tf, visit_duration FROM places where city_id = ?", (city_id,))
+        if(tags != None):
+            query = "SELECT name, latitude, longitude, tf, visit_duration FROM places WHERE city_id = ?"
+            params = [city_id]
+    
+            for tag in tags:
+                query += " AND tags LIKE ?"
+                params.append(f"%{tag}%")  # Add wildcards to tag
+            
+            print("query:", query)
+            print("params:", params)
+            cursor.execute(query, params)
+        else:
+            cursor.execute("SELECT name, latitude, longitude, tf, visit_duration FROM places where city_id = ?", (city_id,))
+        
         places = cursor.fetchall()
 
         if not places:
