@@ -41,7 +41,7 @@ class PlaceResponse(BaseModel):
     tf: float
     visit_duration: float
 
-# @places_app.get("/cities/places/", response_model=List[PlaceResponse])
+# Creates Itinerary for city
 @places_app.get("/cities/places/")
 async def get_nearest_cities(lat: float, lon: float, city_id : str):
     conn = sqlite3.connect(DB_FILE)
