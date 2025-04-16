@@ -7,7 +7,8 @@ city_router_app = APIRouter()
 DB_FILE = "data.db"
 
 # Returns all the city by name 
-@city_router_app.get('/cities/')
+#adding one more comment to test the git commit
+@city_router_app.get('/users/cities/')
 async def getByCities(name: Optional[str] = None):
     conn = sqlite3.connect(DB_FILE)
     conn.execute("PRAGMA foreign_keys = ON")  # Enable foreign key constraint
