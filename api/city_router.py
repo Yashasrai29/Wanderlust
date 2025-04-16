@@ -6,7 +6,7 @@ city_router_app = APIRouter()
 
 DB_FILE = "data.db"
 
-
+# Returns all the city by name 
 @city_router_app.get('/cities/')
 async def getByCities(name: Optional[str] = None):
     conn = sqlite3.connect(DB_FILE)
