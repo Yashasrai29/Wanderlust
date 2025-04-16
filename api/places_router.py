@@ -42,7 +42,7 @@ class PlaceResponse(BaseModel):
     visit_duration: float
 
 # Creates Itinerary for city
-@places_app.post("/cities/places/")
+@places_app.post("/users/cities/places/")
 async def get_itinerary(lat: float, lon: float, city_id : str, tags: Optional[List[str]] = None):
     conn = sqlite3.connect(DB_FILE)
     conn.execute("PRAGMA foreign_keys = ON")
