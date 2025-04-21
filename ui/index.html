@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Plan Your Dream Trip</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .container { max-width: 400px; margin: auto; }
+    input, select, button, .tags-container { width: 100%; padding: 10px; margin: 10px 0; }
+    .tags-container { display: flex; flex-wrap: wrap; gap: 5px; }
+    .tag-item { padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; cursor: pointer; background-color: #f0f0f0; }
+    .tag-item.selected { background-color: #007bff; color: white; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Plan Your Dream Trip</h2>
+    <label>Source</label>
+    <div style="position: relative;">
+    <input id="sourceInput" placeholder="Enter source city" />
+    </div>
+
+    <label>Destination</label>
+    <div style="position: relative;">
+    <input id="destinationInput" placeholder="Enter destination city" />
+    </div>
+
+    <label>Tags</label>
+    <div class="tags-container" id="tagsContainer"></div>
+
+    <button onclick="submitPlan()">Plan My Trip</button>
+  </div>
+  <script>
+    const tags = [
+      'HILLS', 'WATERFALLS', 'HISTORIC TEMPLE', 'LAKE', 'TEMPLE', 'RIVER', 'WILDLIFE SANCTUARY', 'FORT',
+      'COFFEE MUSEUM', 'BOTANICAL GARDEN', 'NATIONAL PARK', 'HERITAGE', 'WILDLIFE', 'CITY LIFE', 'PARK',
+      'PALACE', 'WATERFALL', 'MOUNTAIN', 'AMUSEMENT PARK', 'LEGISLATIVE HOUSE', 'MONUMENT', 'MUSEUM',
+      'RELIGIOUS', 'NATURE', 'ADVENTURE'
+    ];
+  
+    const selectedTags = new Set();
+    const tagContainer = document.getElementById("tagsContainer");
+    tags.forEach(tag => {
+      const div = document.createElement("div");
+      div.className = "tag-item";
+      div.innerText = tag;
+      div.onclick = () => {
+        if (selectedTags.has(tag)) {
+          selectedTags.delete(tag);
+          div.classList.remove("selected");
+        } else {
+          selectedTags.add(tag);
+          div.classList.add("selected");
+        }
+      };
+      tagContainer.appendChild(div);
+    });
+  
+    function setupAutocomplete(inputId) {
+      const input = document.getElementById(inputId);
+      const dropdown = document.createElement("div");
+      dropdown.style.border = "1px solid #ccc";
+      dropdown.style.position = "absolute";
+      dropdown.style.backgroundColor = "white";
+      dropdown.style.zIndex = 1000;
+      dropdown.style.width = input.offsetWidth + "px";
+      dropdown.style.maxHeight = "120px";
+      dropdown.style.overflowY = "auto";
+      dropdown.style.display = "none";
+      dropdown.style.cursor = "pointer";
+      input.parentElement.appendChild(dropdown);
+  
+      input.addEventListener("input", async () => {
+        const name = input.value.trim();
+        dropdown.innerHTML = "";
+        if (name.length < 2) {
+          dropdown.style.display = "none";
+          return;
+        }
+  
+        try {
+          const res = await fetch(`http://127.0.0.1:8009/users/cities/?name=${name}`);
+          const data = await res.json();
+  
+          if (data.length === 0) {
+            dropdown.style.display = "none";
+            return;
+          }
+  
+          data.forEach(([id, city]) => {
+            const item = document.createElement("div");
+            item.textContent = city;
+            item.style.padding = "8px";
+            item.onclick = () => {
+              input.value = city;
+              input.dataset.cityId = id;
+              dropdown.style.display = "none";
+            };
+            dropdown.appendChild(item);
+          });
+  
+          dropdown.style.display = "block";
+        } catch (err) {
+          console.error(`Error fetching ${inputId} cities:`, err);
+        }
+      });
+  
+      // Hide dropdown on outside click
+      document.addEventListener("click", (e) => {
+        if (!input.contains(e.target) && !dropdown.contains(e.target)) {
+          dropdown.style.display = "none";
+        }
+      });
+    }
+  
+    setupAutocomplete("sourceInput");
+    setupAutocomplete("destinationInput");
+  
+    async function submitPlan() {
+      const sourceInput = document.getElementById("sourceInput");
+      const destinationInput = document.getElementById("destinationInput");
+  
+      const sourceId = sourceInput.dataset.cityId;
+      const destinationId = destinationInput.dataset.cityId;
+  
+      if (!sourceId || !destinationId) {
+        alert("Please select source and destination from suggestions.");
+        return;
+      }
+  
+      const tagsQuery = Array.from(selectedTags).map(tag => `tags=${encodeURIComponent(tag)}`).join('&');
+      const url = `http://127.0.0.1:8009/users/cities/places/?source_id=${sourceId}&destination_id=${destinationId}${tagsQuery ? `&${tagsQuery}` : ''}`;
+  
+      console.log("Final fetch:", url);
+  
+      const res = await fetch(url);
+      const result = await res.json();
+      console.log("Trip Plan:", result);
+      alert("Trip plan retrieved! Check the console for details.");
+    }
+  </script>
+  
+</body>
+</html>
