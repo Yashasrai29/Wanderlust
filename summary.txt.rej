@@ -1,0 +1,116 @@
+diff a/summary.txt b/summary.txt	(rejected hunks)
+@@ -1,66 +0,68 @@
+-[Arrival time from the starting location]: 4 hours 28 minutes  
+-[Departure time back to the starting location]: 4 hours 57 minutes  
+-[Total number of days]: 3  
+-[Total number of nights]: 2  
++[Arrival time from the starting location]: 2 hr 17 min  
++[Departure time back to the starting location]: 2 hr 58 min  
++[Total number of days]: 25  
++[Total number of nights]: 24  
+ 
+ ---
+ 
+ [Day 1:  
+-   1. Visit Doddabetta Peak (Description: Doddabetta Peak is the highest mountain in the Nilgiri Hills, offering breathtaking panoramic views of the surrounding valleys and forests. It is a must-visit spot for nature lovers and photographers.)  
++   1. Visit Mudumalai National Park (Description: Mudumalai National Park is a beautiful wildlife sanctuary located at the foothills of the Nilgiris. It�s known for its rich biodiversity, featuring tigers, elephants, and bird species, making it a paradise for nature lovers and wildlife enthusiasts.)  
++      (visit duration: 5 hr 0 min).  
++      Next Location: Pykara Lake  
++      Travel to Pykara Lake: (70.2 km); (travel time: 1 hr 52 min).  
++
++   2. Visit Pykara Lake (Description: Pykara Lake is a serene and picturesque freshwater lake surrounded by lush greenery. It�s a perfect spot for boating and relaxing in the tranquil beauty of nature.)  
+       (visit duration: 2 hr 0 min).  
+       Next Location: Pykara Waterfalls  
+-      Travel to Pykara Waterfalls: (22.20 km); (travel time: 0 hr 44 min).  
++      Travel to Pykara Waterfalls: (9.5 km); (travel time: 15 min).  
+ 
+-   2. Visit Pykara Waterfalls (Description: Known for its serene environment, Pykara Waterfalls is a picturesque spot surrounded by lush greenery and sparkling waters. It's an ideal location for relaxation and photography.)  
+-      (visit duration: 2 hr 30 min).  
+-      Next Location: Rose Garden  
+-      Travel to Rose Garden: (18.66 km); (travel time: 0 hr 30 min).  
+-
+-   3. Visit Rose Garden (Description: The Rose Garden features a stunning collection of colorful roses, making it one of the largest rose gardens in India. It�s a fragrant and visually delightful experience.)  
+-      (visit duration: 2 hr 0 min).  
+-      Next Location: Murugan Temple  
+-      Travel to Murugan Temple: (0.87 km); (travel time: 0 hr 1 min).  
++---
+ 
+-   4. Visit Murugan Temple (Description: A peaceful and spiritual place, Murugan Temple is dedicated to Lord Murugan and is known for its beautiful architecture and serene ambiance.)  
+-      (visit duration: 1 hr 0 min).  
+-      Next Location: Nilgiri Mountain Railway  
+-      Travel to Nilgiri Mountain Railway: (18.95 km); (travel time: 0 hr 38 min).  
++[Day 2:  
++   1. Visit Pykara Waterfalls (Description: Pykara Waterfalls is a scenic spot where cascading waters flow amidst dense forests. The falls are a popular attraction for photography, picnics, and enjoying nature�s splendor.)  
++      (visit duration: 2 hr 30 min).  
++      Next Location: Ooty Lake  
++      Travel to Ooty Lake: (11.2 km); (travel time: 18 min).  
+ 
+-   5. Visit Nilgiri Mountain Railway (Description: A UNESCO World Heritage Site, the Nilgiri Mountain Railway offers scenic train rides through the misty hills and lush tea plantations of the Nilgiris.)  
++   2. Visit Ooty Lake (Description: Ooty Lake is a man-made lake surrounded by eucalyptus trees, offering boating facilities and relaxing views. It�s a great destination for families and couples seeking leisure and fun.)  
+       (visit duration: 1 hr 0 min).  
+       Next Location: Fernhills Royal Palace  
+-      Travel to Fernhills Royal Palace: (21.99 km); (travel time: 0 hr 44 min).  
+-]
++      Travel to Fernhills Royal Palace: (5.8 km); (travel time: 9 min).  
+ 
+ ---
+ 
+-[Day 2:  
+-   1. Visit Fernhills Royal Palace (Description: Once the summer palace of the Maharajas of Mysore, this grand palace showcases stunning colonial-era architecture and is surrounded by lush gardens.)  
++[Day 3:  
++   1. Visit Fernhills Royal Palace (Description: Fernhills Royal Palace is a grand heritage hotel that was once a summer palace for the Maharajas of Mysore. It showcases stunning colonial architecture and lush gardens.)  
+       (visit duration: 1 hr 0 min).  
+-      Next Location: Ooty Lake  
+-      Travel to Ooty Lake: (5.79 km); (travel time: 0 hr 9 min).  
++      Next Location: Rose Garden  
++      Travel to Rose Garden: (3.8 km); (travel time: 6 min).  
+ 
+-   2. Visit Ooty Lake (Description: A man-made lake surrounded by eucalyptus trees, Ooty Lake is a popular spot for boating and taking leisurely strolls amidst nature.)  
+-      (visit duration: 1 hr 0 min).  
+-      Next Location: Coonoor  
+-      Travel to Coonoor: (17.61 km); (travel time: 0 hr 28 min).  
++   2. Visit Rose Garden (Description: The Rose Garden in Ooty boasts a vibrant collection of thousands of rose varieties. It�s a visual delight for flower enthusiasts and a peaceful spot to enjoy a stroll.)  
++      (visit duration: 2 hr 0 min).  
++      Next Location: Murugan Temple  
++      Travel to Murugan Temple: (0.9 km); (travel time: 1 min).  
+ 
+-   3. Visit Coonoor (Description: A charming hill station known for its tea estates, breathtaking views, and attractions like Sim�s Park and Dolphin�s Nose. It's a perfect destination to unwind.)  
+-      (visit duration: 6 hr 0 min).  
+-      Next Location: Pykara Lake  
+-      Travel to Pykara Lake: (31.84 km); (travel time: 0 hr 51 min).  
++---
+ 
+-   4. Visit Pykara Lake (Description: A serene lake surrounded by dense forests, Pykara Lake is ideal for boating and enjoying the tranquility of nature.)  
++[Day 4:  
++   1. Visit Murugan Temple (Description: Murugan Temple is a serene and sacred Hindu temple dedicated to Lord Murugan. It�s known for its spiritual ambiance and picturesque surroundings.)  
++      (visit duration: 1 hr 0 min).  
++      Next Location: Doddabetta Peak  
++      Travel to Doddabetta Peak: (3.9 km); (travel time: 8 min).  
++
++   2. Visit Doddabetta Peak (Description: Doddabetta Peak is the highest peak in the Nilgiris, offering breathtaking panoramic views of the surrounding valleys and forests. It�s a popular spot for trekking and photography.)  
+       (visit duration: 2 hr 0 min).  
+-      Next Location: Mudumalai National Park  
+-      Travel to Mudumalai National Park: (70.17 km); (travel time: 1 hr 52 min).  
+-]
++      Next Location: Coonoor  
++      Travel to Coonoor: (8.0 km); (travel time: 16 min).  
+ 
+ ---
+ 
+-[Day 3:  
+-   1. Visit Mudumalai National Park (Description: A wildlife sanctuary and tiger reserve, Mudumalai National Park is home to diverse flora and fauna, including elephants, tigers, and exotic birds. It�s a paradise for nature enthusiasts.)  
+-      (visit duration: 5 hr 0 min).  
+-      Next Location: End of Trip  
+-      Travel to End of Trip: (0.0 km); (travel time: 0 hr 0 min).  
+-]
+\ No newline at end of file
++[Day 5:  
++   1. Visit Coonoor (Description: Coonoor is a charming hill station known for its tea plantations, verdant landscapes, and colonial charm. It�s a great place to unwind and explore scenic spots like Sim's Park.)  
++      (visit duration: 6 hr 0 min).  
++      Next Location: Nilgiri Mountain Railway  
++      Travel to Nilgiri Mountain Railway: (10.7 km); (travel time: 21 min).  
++
++   2. Visit Nilgiri Mountain Railway (Description: The Nilgiri Mountain Railway is a UNESCO World Heritage Site and a thrilling train ride through winding tracks, tunnels, and picturesque landscapes. It�s a must-visit experience in the Nilgiris.)  
++      (visit duration: 1 hr 0 min).  
++      Next Location: End of Day
+\ No newline at end of file
