@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .dropdown-wrapper {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .dropdown {
+      border: 1px solid #ccc;
+      max-height: 150px;
+      overflow-y: auto;
+      background: #fff;
+      position: absolute;
+      width: 100%;
+      z-index: 1000;
+      display: none;
+    }
+
+    .dropdown div {
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .dropdown div:hover {
+      background-color: #f0f0f0;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+    }
+
+    button {
+      padding: 8px 16px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h3>Select Source & Destination</h3>
+
+  <div class="dropdown-wrapper">
+    <label>From:</label>
+    <input type="text" id="sourceInput" placeholder="Enter source city">
+    <div class="dropdown" id="sourceDropdown"></div>
+  </div>
+
+  <div class="dropdown-wrapper">
+    <label>To:</label>
+    <input type="text" id="destinationInput" placeholder="Enter destination city">
+    <div class="dropdown" id="destinationDropdown"></div>
+  </div>
+
+  <button onclick="submitSelection()">Submit</button>
+
+  <div id="output" style="margin-top: 20px;"></div>
+
+
+  <script>
+    const apiBase = "http://127.0.0.1:8009/users/cities/?name=";
+    let selectedSourceId = null;
+    let selectedDestinationId = null;
+
+    function setupDropdown(inputId, dropdownId, setSelectedIdCallback) {
+      const input = document.getElementById(inputId);
+      const dropdown = document.getElementById(dropdownId);
+
+      input.addEventListener("input", async () => {
+        const query = input.value.trim();
+        dropdown.innerHTML = "";
+        if (query.length < 2) {
+          dropdown.style.display = "none";
+          return;
+        }
+
+        try {
+          const res = await fetch(apiBase + query);
+          const results = await res.json();
+
+          results.forEach(([id, city]) => {
+            const div = document.createElement("div");
+            div.textContent = city;
+            div.onclick = () => {
+              input.value = city;
+              setSelectedIdCallback(id);
+              dropdown.innerHTML = "";
+              dropdown.style.display = "none";
+            };
+            dropdown.appendChild(div);
+          });
+
+          dropdown.style.display = results.length ? "block" : "none";
+        } catch (err) {
+          console.error("City fetch error:", err);
+        }
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!dropdown.contains(e.target) && e.target !== input) {
+          dropdown.style.display = "none";
+        }
+      });
+    }
+
+    setupDropdown("sourceInput", "sourceDropdown", (id) => selectedSourceId = id);
+    setupDropdown("destinationInput", "destinationDropdown", (id) => selectedDestinationId = id);
+
+    async function submitSelection() {
+      if (!selectedSourceId || !selectedDestinationId) {
+        alert("Please select both source and destination.");
+        return;
+      }
+
+      const url = `http://127.0.0.1:8009/users/cities/places/?source_id=${selectedSourceId}&city_id=${selectedDestinationId}`;
+      try {
+        <!-- const res = await fetch(url); -->
+        const res = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            }
+          });
+        const result = await res.json();
+        console.log("Places Result:", result);
+       // alert("Data fetched. Check console.");
+       const output = document.getElementById("output");
+        //output.innerHTML = "<h4>Places Found:</h4>";
+
+        if (!result || result.length === 0) {
+        output.innerHTML += "<p>No places found.</p>";
+        } else {
+        output.innerHTML = 
+            `<h4>Places Found:</h4>
+            <p> ${result?.summary} </p>`;
+            
+        }
+
+      } catch (err) {
+        console.error("Submit error:", err);
+        alert("Failed to fetch places.");
+      }
+    }
+  </script>
+</body>
+</html>
