@@ -20,7 +20,7 @@ async def getByCities(name: Optional[str] = None):
         else:
             cursor.execute("SELECT id,name FROM cities WHERE name like  ? COLLATE NOCASE", ('%' + name + '%',))
         
-        return str(cursor.fetchall())
+        return cursor.fetchall()
     except Exception as e:
         raise HTTPException(status_code = 404, detail=str(e))
     finally:
